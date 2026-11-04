@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#164f50">
+  <meta name="description" content="제주의 지금 날씨, 바람과 공기의 표정을 한눈에 확인하세요.">
+  <title>지금 제주 날씨는?</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+<div class="shell">
+  <header><a class="brand" href="./" aria-label="지금 제주 날씨는? 홈"><span class="brand-icon">✳</span> 제주, 지금<span class="brand-dot">.</span></a><span class="header-note">제주를 만나는 가장 가벼운 방법</span><button class="text-button" id="settings">API 키 설정 <span aria-hidden="true">↗</span></button></header>
+  <main>
+    <section class="intro"><div><p class="eyebrow">A LITTLE WEATHER, A LOT OF JEJU</p><h1>지금 제주 날씨는<span>?</span></h1><p class="intro-copy">바람 따라 달라지는 제주의 하루, 떠나기 전에 살펴보세요.</p></div><div class="date"><span id="today"></span><span>대한민국, 제주도 · KST</span></div></section>
+    <nav class="places" aria-label="제주 지역 선택"><button class="active" data-place="jeju" aria-pressed="true">제주시 <span>북쪽</span></button><button data-place="seogwipo" aria-pressed="false">서귀포 <span>남쪽</span></button><button data-place="seongsan" aria-pressed="false">성산 <span>동쪽</span></button><button data-place="hallim" aria-pressed="false">한림 <span>서쪽</span></button></nav>
+    <section class="weather-layout" aria-label="현재 날씨">
+      <div class="current-card">
+        <div class="card-top"><span class="location"><span aria-hidden="true">⌖</span> <span id="place-name">제주시</span></span><span class="live"><i></i> CURRENT WEATHER</span></div>
+        <div class="weather-main"><div><p id="condition">제주의 날씨를 만나보세요</p><div class="temperature"><span id="temp">—</span><span class="degree">°</span><span class="unit">C</span></div><p class="feels">체감온도 <strong id="feels">—</strong><span>오늘도, 당신의 제주.</span></p></div><div id="weather-art" aria-hidden="true"><div class="sun"></div><div class="cloud cloud-one"></div><div class="cloud cloud-two"></div></div></div>
+        <div class="card-bottom"><span id="updated">API 키를 연결하면 현재 날씨가 표시됩니다.</span><button id="refresh" aria-label="현재 날씨 새로고침">↻ <span>새로고침</span></button></div>
+      </div>
+      <aside class="island-card"><span class="eyebrow">SOMEWHERE IN JEJU</span><h2>잠깐의 쉼에도,<br>제주가 있으니까.</h2><svg viewBox="0 0 420 200" role="img" aria-label="햇살 아래 제주의 산과 바다 일러스트"><circle cx="324" cy="43" r="29" fill="#edaa5f"/><path d="M0 142 Q78 111 154 142 T420 134 V200 H0Z" fill="#b3cfbd"/><path d="M63 151 Q127 130 185 76 Q202 47 218 79 Q269 119 340 152Z" fill="#588b76"/><path d="M169 92 L199 65 L221 85 L206 82 L195 88 L187 83Z" fill="#d2dfc8"/><path d="M0 160 Q95 141 211 162 T420 150 V200 H0Z" fill="#6ba5a0"/><path d="M0 180 Q110 161 227 182 T420 176" fill="none" stroke="#d5e5d7" stroke-width="2"/><path d="M25 194 Q148 174 272 194 T420 188" fill="none" stroke="#d5e5d7" stroke-width="2"/><path d="M58 149 L61 116 M44 126 Q59 111 76 122 M43 137 Q60 120 80 136" fill="none" stroke="#285f50" stroke-width="5" stroke-linecap="round"/></svg><span class="island-caption">바람, 돌, 그리고 오늘의 공기</span></aside>
+    </section>
+    <p id="status" class="status" role="status" aria-live="polite">WeatherAPI 키를 설정하고 제주의 현재 날씨를 확인하세요.</p>
+    <section class="details-section"><div class="section-heading"><h2>조금 더 자세히</h2><span>지금 제주의 공기</span></div><div class="details">
+      <article class="metric"><span class="metric-icon">≋</span><h3>바람</h3><p><strong id="wind">—</strong> <span>m/s</span></p><small id="wind-note">풍향 —</small></article>
+      <article class="metric"><span class="metric-icon">♧</span><h3>습도</h3><p><strong id="humidity">—</strong> <span>%</span></p><small>공기 속 수분</small></article>
+      <article class="metric"><span class="metric-icon">☂</span><h3>강수량</h3><p><strong id="rain">—</strong> <span>mm</span></p><small>현재 보고 강수량</small></article>
+      <article class="metric"><span class="metric-icon">☼</span><h3>자외선</h3><p><strong id="uv">—</strong></p><small id="uv-note">자외선 지수</small></article>
+    </div></section>
+    <div class="travel-note"><span class="note-icon" aria-hidden="true">✳</span><div><h3>제주를 걷기 전, 작은 체크</h3><p id="tip">지역을 선택하면 그곳의 현재 날씨를 확인할 수 있어요.</p></div><span class="note-tag">JEJU NOTE</span></div>
+  </main>
+  <footer><span>제주, 지금. <span class="footer-light">일상과 여행 사이</span></span><span>날씨 데이터 <a href="https://www.weatherapi.com/" target="_blank" rel="noreferrer">WeatherAPI.com ↗</a> · 현재 날씨 기준</span></footer>
+</div>
+<dialog id="key-dialog"><form id="key-form"><button type="button" class="close" id="close-dialog" aria-label="닫기">×</button><p class="eyebrow">CONNECT YOUR WEATHER</p><h2>제주의 날씨와 연결하기</h2><p>WeatherAPI.com에서 발급받은 API 키를 입력하세요. 키는 이 탭의 세션에 보관됩니다. 화면을 다시 열면 자동으로 조회하며 탭을 닫으면 삭제됩니다.</p><label for="api-key">WeatherAPI API 키</label><input id="api-key" type="password" autocomplete="off" placeholder="API 키를 입력하세요" required><button type="submit" class="primary">현재 날씨 불러오기 <span>↗</span></button><a class="key-link" href="https://www.weatherapi.com/signup.aspx" target="_blank" rel="noreferrer">API 키 발급받기 ↗</a><small>브라우저에서 API를 직접 호출하므로 키는 개발자 도구에서 확인할 수 있습니다.</small></form></dialog>
+</body>
+</html>
+
